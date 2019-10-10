@@ -139,10 +139,19 @@
           "libraryName": "antd",
           "style": "css"
         }
+      ],
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
       ]
     ],
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.6.0"
   }
 }
