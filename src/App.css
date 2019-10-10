@@ -1,22 +1,20 @@
-.App {
-  text-align: center;
+.component-header {
+  height: 50px;
 }
 
-.App-logo {
-  height: 40vmin;
+.main-content {
+  height: calc(100% - 50px);
+  overflow: hidden;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.component-side-bar {
+  float: left;
+  width: 256px;
+  height: 100%;
+  background-color: #001529;
 }
-
-.App-link {
-  color: #09d3ac;
+.wrap-page {
+  float: left;
+  width: calc(100% - 256px);
+  height: 100%;
 }

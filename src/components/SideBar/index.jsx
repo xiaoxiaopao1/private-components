@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu, Icon } from 'antd';
 import routeConf from '@/constants/routeConf';
 import { withRouter } from 'react-router'; 
-import './index.sass';
+import './index.scss';
 
 const { SubMenu } = Menu;
 
@@ -21,8 +21,13 @@ class SideBar extends React.Component {
     }
   }
 
+  componentDidMount() {
+    console.log(this.props);
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
+      console.log(this.props)
       this.setState({current: this.initSelectedKeys()});
     }
   }
@@ -40,6 +45,9 @@ class SideBar extends React.Component {
   getCurrentKey = (level, arr, pathIndexQueue) => {
     if (level === pathIndexQueue.length - 1) {
       return arr[pathIndexQueue[level]].key;
+    }
+    if (!arr[pathIndexQueue[level]]) {
+      return;
     }
     return this.getCurrentKey(level + 1, arr[pathIndexQueue[level]].children, pathIndexQueue);
   }
@@ -95,17 +103,17 @@ class SideBar extends React.Component {
 
   render() {
     return (
-      this.props.location.key
-      ? <Menu
+      <div className='component-side-bar'>
+        <Menu
+          className='side-bar-menu'
           theme='dark'
-          style={{ width: 256 }}
           defaultOpenKeys={this.defaultOpenKeys}
           selectedKeys={[this.state.current]}
           mode="inline"
         >
           {this.menuRender}
         </Menu>
-      : null
+      </div>
     )
   }
 }

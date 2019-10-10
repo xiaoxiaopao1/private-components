@@ -12,7 +12,7 @@ const routeConf = [
     component: Home,
     value: '首页',
     breadName: '首页',
-    key: '首页',
+    key: 'home',
     category: false,
   },
   {

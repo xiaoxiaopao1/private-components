@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from '@/routes/Home';
-import Page1 from '@/routes/Page1';
 import Page404 from '@/routes/Page404';
+import Header from '@/components/Header';
 import SideBar from '@/components/SideBar';
 
 import routeConf from '@/constants/routeConf';
+
 import './App.css';
+
 
 const routeRender = (routes) => {
   return routes.map(item => {
@@ -17,20 +18,63 @@ const routeRender = (routes) => {
   });
 }
 
-export default () => {
-  return (
-    <Router>
-      <SideBar />
-      <div className='wrap-page'>
-        <Switch>
-          {
-            routeRender(routeConf)
-          }
-          <Route component={Page404} />
-        </Switch>
+// export default () => {
+//   return (
+//     <Router>
+//       <Header />
+//       <div className='main-content'>
+//         <SideBar />
+//         <div className='wrap-page clear-fix'>
+//           <Switch>
+//             {
+//               routeRender(routeConf)
+//             }
+//             <Route component={Page404} />
+//           </Switch>
+//         </div>
+//       </div>
+      
+//     </Router>
+//   );
+// }
+
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showCommon: true
+    };
+  }
+
+  toggleShowCommon = (showCommon, cb) => {
+    this.setState({showCommon}, () => {
+      cb && cb();
+    });
+  }
+
+  render() {
+    return (
+      <Router>
+      <Header />
+      <div className='main-content'>
+        {this.state.showCommon && <SideBar />}
+        <div className='wrap-page clear-fix'>
+          <Switch>
+            {
+              routeRender(routeConf)
+            }
+            <Route 
+              render={props => (
+                <Page404 {...props} toggleShowCommon={this.toggleShowCommon}/>
+              )} 
+            />
+          </Switch>
+        </div>
       </div>
+      
     </Router>
-  );
+    )
+  }
 }
 
 
