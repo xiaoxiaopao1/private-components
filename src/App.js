@@ -46,33 +46,28 @@ export default class App extends React.Component {
     };
   }
 
-  toggleShowCommon = (showCommon, cb) => {
-    this.setState({showCommon}, () => {
-      cb && cb();
-    });
+  toggleShowCommon = (showCommon) => {
+    this.setState({showCommon});
   }
 
   render() {
     return (
       <Router>
-      <Header />
-      <div className='main-content'>
-        {this.state.showCommon && <SideBar />}
-        <div className='wrap-page clear-fix'>
-          <Switch>
-            {
-              routeRender(routeConf)
-            }
-            <Route 
-              render={props => (
-                <Page404 {...props} toggleShowCommon={this.toggleShowCommon}/>
-              )} 
-            />
-          </Switch>
+        { this.state.showCommon && <Header /> }
+        <div className='main-content'>
+          { this.state.showCommon && <SideBar /> }
+          <div className='wrap-page clear-fix'>
+            <Switch>
+              { routeRender(routeConf) }
+              <Route 
+                render={props => (
+                  <Page404 {...props} toggleShowCommon={this.toggleShowCommon}/>
+                )} 
+              />
+            </Switch>
+          </div>
         </div>
-      </div>
-      
-    </Router>
+      </Router>
     )
   }
 }

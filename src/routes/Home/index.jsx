@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.sass';
+import './index.scss';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -7,7 +7,9 @@ export default class Home extends React.Component {
   }
   render() {
     return (
-      <div className='page-home'>Home</div>
+      <div className='page-home'>
+        home
+      </div>
     )
   }
 }
