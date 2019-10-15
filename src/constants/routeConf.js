@@ -1,5 +1,7 @@
 import Home from '@/routes/Home';
 import Page1 from '@/routes/Page1';
+import RandomColorPrint from '@/routes/MyDemo/RandomColorPrint';
+import TextOverflowPop from '@/routes/MyDemo/TextOverflowPop';
 
 // category  
 // false, render with menuItem
@@ -27,6 +29,28 @@ const routeConf = [
         value: 'Page1',
         breadName: 'Page1',
         key: 'Page1',
+        category: false,
+      },
+    ]
+  },
+  {
+    key: 'my demo',
+    value: 'my demo',
+    path: '/demo',
+    category: true,
+    children: [
+      {
+        key: 'randomColorPrint',
+        value: 'randomColorPrint',
+        path: '/random_color_print',
+        component: RandomColorPrint,
+        category: false,
+      },
+      {
+        key: 'textOverflowPop',
+        value: 'textOverflowPop',
+        path: '/text_overflow_pop',
+        component: TextOverflowPop,
         category: false,
       },
     ]
