@@ -73,9 +73,6 @@ class SideBar extends React.Component {
   }
 
   eachLevelRender = (arr) => {
-    if (this.currentLevel >= this.maxLevel) {
-      return null;
-    }
 
     this.currentLevel++;
 

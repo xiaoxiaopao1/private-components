@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.scss';
+import Test from './Test';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -8,20 +9,14 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.refContainer.current.offsetWidth);
-    console.log(this.refContainer.current.scrollWidth);
-    console.log(this.refContainer.current.offsetWidth < this.refContainer.current.scrollWidth);
+    const test = new Test();
+    console.log(test);
   }
 
   render() {
     return (
       <div className='page-home'>
-        <div style={{width: '100px'}}>
-          <popover>
-            <p ref={this.refContainer}>111111111111111111111111111111111111111111111111</p>
-          </popover>
-          
-        </div>
+        
       </div>
     )
   }

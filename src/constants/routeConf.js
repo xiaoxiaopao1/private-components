@@ -2,6 +2,8 @@ import Home from '@/routes/Home';
 import Page1 from '@/routes/Page1';
 import RandomColorPrint from '@/routes/MyDemo/RandomColorPrint';
 import TextOverflowPop from '@/routes/MyDemo/TextOverflowPop';
+import TimelineUnion from '@/routes/MyDemo/TimelineUnion';
+import GuessNumber from '@/routes/LeetDemo/GuessNumber';
 
 // category  
 // false, render with menuItem
@@ -53,6 +55,42 @@ const routeConf = [
         component: TextOverflowPop,
         category: false,
       },
+      {
+        key: 'timelineUnion',
+        value: 'timelineUnion',
+        path: '/timeline_union',
+        component: TimelineUnion,
+        category: false,
+      },
+    ]
+  },
+  {
+    key: 'leet demo',
+    value: 'leet demo',
+    path: '/leet_demo',
+    category: true,
+    children: [
+      {
+        key: 'guessNumber',
+        value: 'guessNumber',
+        path: '/guess_number',
+        component: GuessNumber,
+        category: false,
+      },
+      // {
+      //   key: 'textOverflowPop',
+      //   value: 'textOverflowPop',
+      //   path: '/text_overflow_pop',
+      //   component: TextOverflowPop,
+      //   category: false,
+      // },
+      // {
+      //   key: 'timelineUnion',
+      //   value: 'timelineUnion',
+      //   path: '/timeline_union',
+      //   component: TimelineUnion,
+      //   category: false,
+      // },
     ]
   }
 ];
