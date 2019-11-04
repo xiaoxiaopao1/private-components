@@ -4,39 +4,28 @@ import Page404 from '@/routes/Page404';
 import Header from '@/components/Header';
 import SideBar from '@/components/SideBar';
 
-import routeConf from '@/constants/routeConf';
+import { routeArr } from '@/constants/routeConf';
+
+
 
 import './App.css';
 
-
-const routeRender = (routes) => {
-  return routes.map(item => {
-    if (!item.children) {
-      return <Route exact key={item.key} path={item.path} component={item.component} />
-    }
-    return routeRender(item.children);
-  });
+const routeRender = () => {
+  let result = [];
+  const recursiveRoute = (routes) => {
+    routes.map(item => {
+      if (!item.category) {
+        result.push(<Route exact key={item.key} path={item.path} component={item.component} />);
+      }
+      if (item.children) {
+        recursiveRoute(item.children);
+      }
+    })
+  };
+  recursiveRoute(routeArr);
+  return result;
 }
 
-// export default () => {
-//   return (
-//     <Router>
-//       <Header />
-//       <div className='main-content'>
-//         <SideBar />
-//         <div className='wrap-page clear-fix'>
-//           <Switch>
-//             {
-//               routeRender(routeConf)
-//             }
-//             <Route component={Page404} />
-//           </Switch>
-//         </div>
-//       </div>
-      
-//     </Router>
-//   );
-// }
 
 export default class App extends React.Component {
   constructor(props) {
@@ -55,10 +44,10 @@ export default class App extends React.Component {
       <Router>
         { this.state.showCommon && <Header /> }
         <div className='main-content'>
-          { this.state.showCommon && <SideBar /> }
           <div className='wrap-page clear-fix'>
+            {this.state.showCommon && <SideBar />}
             <Switch>
-              { routeRender(routeConf) }
+              { routeRender(routeArr) }
               <Route 
                 render={props => (
                   <Page404 {...props} toggleShowCommon={this.toggleShowCommon}/>

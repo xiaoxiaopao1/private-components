@@ -5,12 +5,15 @@ import TextOverflowPop from '@/routes/MyDemo/TextOverflowPop';
 import TimelineUnion from '@/routes/MyDemo/TimelineUnion';
 import GuessNumber from '@/routes/LeetDemo/GuessNumber';
 
+import List from '@/routes/Page1/List';
+import Detail from '@/routes/Page1/List/Detail';
+
 // category  
 // false, render with menuItem
 // true, render with subMenu
 // undefined, don't render
 
-const routeConf = [
+const routeArr = [
   {
     path: '/',
     component: Home,
@@ -26,12 +29,30 @@ const routeConf = [
     category: true,
     children: [
       {
-        path: '/page1',
+        path: '/page1/:id?/:name?',
         component: Page1,
         value: 'Page1',
         breadName: 'Page1',
         key: 'Page1',
         category: false,
+        children: [
+          {
+            path: '/list',
+            component: List,
+            value: 'List',
+            key: 'List',
+            category: false,
+            children: [
+              {
+                path: '/:id',
+                component: Detail,
+                value: 'Detail',
+                key: 'Detail',
+                category: false,
+              }
+            ]
+          }
+        ]
       },
     ]
   },
@@ -95,6 +116,8 @@ const routeConf = [
   }
 ];
 
+let routeJson = {};
+
 const completeKeyAndPath = (arr, forwardPath, forwardKey) => {
   if (!forwardPath) {
     forwardPath = '';
@@ -106,13 +129,14 @@ const completeKeyAndPath = (arr, forwardPath, forwardKey) => {
     item.ownPath = item.path;
     item.path = forwardPath + item.path;
     item.key = forwardKey + item.key;
+    routeJson[item.path] = item;
     if (Array.isArray(item.children)) {
       completeKeyAndPath(item.children, item.path, item.key)
     }
   });
 }
 
-completeKeyAndPath(routeConf);
+completeKeyAndPath(routeArr);
 
 
-export default routeConf;
+export {routeArr, routeJson};

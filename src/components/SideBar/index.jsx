@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
-import routeConf from '@/constants/routeConf';
+import { routeArr } from '@/constants/routeConf';
 import { withRouter } from 'react-router'; 
 import './index.scss';
 
@@ -15,14 +15,14 @@ class SideBar extends React.Component {
     this.currentLevel = 0;
     this.defaultOpenKeys = [];
     this.pathIndexQueue = [];
-    this.menuRender = this.eachLevelRender(routeConf);
+    this.menuRender = this.eachLevelRender(routeArr);
     this.state = {
       current: this.initSelectedKeys()
     }
   }
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   componentDidUpdate(prevProps) {
@@ -38,8 +38,8 @@ class SideBar extends React.Component {
     const pathArr = pathname.split('/');
     pathArr.shift();
 
-    this.getIndexQueue(0, routeConf, pathArr);
-    return this.getCurrentKey(0, routeConf, this.pathIndexQueue);
+    this.getIndexQueue(0, routeArr, pathArr);
+    return this.getCurrentKey(0, routeArr, this.pathIndexQueue);
   }
 
   getCurrentKey = (level, arr, pathIndexQueue) => {
